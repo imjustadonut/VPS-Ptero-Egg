@@ -1,27 +1,28 @@
-name: Docker Image CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/riscv64
-          push: true
-          tags: https://github.com/imjustadonut/VPS-Ptero-Egg/
-          outputs: type=image,name=target
+            - name: Deploy to Github Environment
+  # You may pin to the exact commit or the version.
+  # uses: Tallyb/deployments@bc57855115ca415addbae3a4cff34c2847be47dc
+  uses: Tallyb/deployments@0.5.0
+  with:
+    # GitHub token
+    token: 
+    # One of 'start' and 'finish'
+    step: 
+    # Set auto_inactive (see https://developer.github.com/v3/repos/deployments/#inactive-deployments)
+    auto_inactive: # optional
+    # URL to logs
+    logs: # optional
+    # Description to set in status
+    desc: # optional
+    # The git ref to use for the deploy, defaults to github.ref
+    ref: # optional
+    # Environment to create
+    env: # optional
+    # The url pointing to the created environment
+    env_url: # optional
+    # deployment status to set (for finish)
+    status: # optional
+    # the deployment id. Required for finish
+    deployment_id: # optional
+    # Specify transient environment. Defaults to true
+    transient: # optional
+          
